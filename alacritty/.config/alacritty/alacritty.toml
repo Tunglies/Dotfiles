@@ -1,6 +1,7 @@
 [env]
-HTTP_PROXY="127.0.0.1:7890"
-HTTPS_PROXY="127.0.0.1:7890"
+https_proxy="http://127.0.0.1:7897"
+http_proxy="http://127.0.0.1:7897"
+all_proxy="socks5://127.0.0.1:7897"
 
 [window]
 padding = { x = 10, y = 10 }
