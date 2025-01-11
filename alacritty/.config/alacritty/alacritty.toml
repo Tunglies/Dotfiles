@@ -1,0 +1,12 @@
+[env]
+HTTP_PROXY="127.0.0.1:7890"
+HTTPS_PROXY="127.0.0.1:7890"
+
+[window]
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+opacity = 0.80
+blur = true
+
+[font]
+size = 14
