@@ -6,9 +6,10 @@ TERM="xterm-256color"
 SHELL="/usr/local/bin/fish"
 
 [window]
-padding = { x = 10, y = 10 }
+padding = { x = 10, y = 20 }
 dynamic_padding = true
-opacity = 0.80
+opacity = 0.75
+decorations = "Transparent"
 blur = true
 
 [font]
