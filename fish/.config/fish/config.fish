@@ -11,4 +11,7 @@ if status is-interactive
     set_proxy
     
     set -gx PATH /opt/homebrew/bin $PATH
+    set -gx PATH ~/.cargo/bin $PATH
+
+    zoxide init fish | source
 end
