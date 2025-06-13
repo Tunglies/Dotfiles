@@ -2,7 +2,7 @@
 https_proxy="http://127.0.0.1:7897"
 http_proxy="http://127.0.0.1:7897"
 all_proxy="socks5://127.0.0.1:7897"
-SHELL="/usr/local/bin/fish"
+SHELL="$(which fish)"
 
 [window]
 padding = { x = 10, y = 20 }
