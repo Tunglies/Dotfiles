@@ -1,3 +1,10 @@
+function ensure_fisher_installed
+    if not functions -q fisher
+        echo "Fisher not found, installing..."
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+    end
+end
+
 function set_proxy
     set -x http_proxy http://127.0.0.1:7897
     set -x https_proxy http://127.0.0.1:7897
@@ -18,6 +25,8 @@ function cpv
 end
 
 if status is-interactive
+    ensure_fisher_installed
+
     # Commands to run in interactive sessions can go here
     set -U fish_greeting "Hello Tunglies!
     (=^･ω･^=)"
@@ -46,7 +55,7 @@ if status is-interactive
     set --export BUN_INSTALL "$HOME/.bun"
     set --export PATH $BUN_INSTALL/bin $PATH
 
-    set -gx PNPM_HOME "/Users/tunglies/Library/pnpm"
+    set -gx PNPM_HOME "$HOME/Library/pnpm"
     if not string match -q -- $PNPM_HOME $PATH
       set -gx PATH "$PNPM_HOME" $PATH
     end
