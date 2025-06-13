@@ -1,17 +1,30 @@
+function ensure_fisher_installed
+    if not functions -q fisher
+        echo "Fisher not found, installing..."
+        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    end
+end
+
 function set_proxy
     set -x http_proxy http://127.0.0.1:7897
     set -x https_proxy http://127.0.0.1:7897
 end
 
+# 获取当前用户名并存入变量
+set -l USERNAME (whoami)
+
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-    set -U fish_greeting "Hello Tunglies!
+    # 检查并安装fisher
+    ensure_fisher_installed
+
+    # Interactive greeting
+    set -U fish_greeting "Hello $USERNAME!
     (=^･ω･^=)"
 
     set_proxy
-    
+
     set -gx PATH /opt/homebrew/bin $PATH
-    set -gx PATH ~/.cargo/bin $PATH
+    set -gx PATH /home/$USERNAME/.cargo/bin $PATH
 
     alias gcl="git clone"
     alias gpl="git pull --rebase"
@@ -30,8 +43,8 @@ if status is-interactive
 end
 
 # pnpm
-set -gx PNPM_HOME "/Users/tunglies/Library/pnpm"
+set -gx PNPM_HOME "/Users/$USERNAME/Library/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
