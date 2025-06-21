@@ -1,3 +1,10 @@
+# 引入 cpv 和 rmv 函数
+for f in ~/.config/fish/functions/fn_cpv.fish ~/.config/fish/functions/fn_rmv.fish
+    if test -f $f
+        source $f
+    end
+end
+
 function ensure_fisher_installed
     if not functions -q fisher
         echo "Fisher not found, installing..."
@@ -8,20 +15,6 @@ end
 function set_proxy
     set -x http_proxy http://127.0.0.1:7897
     set -x https_proxy http://127.0.0.1:7897
-end
-
-function cpv
-    if test (count $argv) -lt 2
-        echo "Usage: cpv source... destination"
-        return 1
-    end
-
-    set -l sources $argv[1..-2]
-    set -l dest $argv[-1]
-
-    for src in $sources
-        rsync -ah --progress --info=progress2 $src $dest
-    end
 end
 
 if status is-interactive
