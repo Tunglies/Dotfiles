@@ -3,6 +3,20 @@ function set_proxy
     set -x https_proxy http://127.0.0.1:7897
 end
 
+function cpv
+    if test (count $argv) -lt 2
+        echo "Usage: cpv source... destination"
+        return 1
+    end
+
+    set -l sources $argv[1..-2]
+    set -l dest $argv[-1]
+
+    for src in $sources
+        rsync -ah --progress --info=progress2 $src $dest
+    end
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -U fish_greeting "Hello Tunglies!
@@ -15,7 +29,8 @@ if status is-interactive
 
     alias gcl="git clone"
     alias gpl="git pull --rebase"
-    alias gp="git push"
+    alias gpu="git push"
+    alias ga="git add"
     alias gcm="git commit -m"
     alias gc="git commit"
     alias gco="git checkout"
@@ -27,11 +42,12 @@ if status is-interactive
     alias gdc="git diff"
 
     zoxide init fish | source
-end
 
-# pnpm
-set -gx PNPM_HOME "/Users/tunglies/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set --export BUN_INSTALL "$HOME/.bun"
+    set --export PATH $BUN_INSTALL/bin $PATH
+
+    set -gx PNPM_HOME "/Users/tunglies/Library/pnpm"
+    if not string match -q -- $PNPM_HOME $PATH
+      set -gx PATH "$PNPM_HOME" $PATH
+    end
 end
-# pnpm end
