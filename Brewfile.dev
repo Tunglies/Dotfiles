@@ -1,0 +1,7 @@
+brew "rust"
+brew "rustup"
+brew "llvm"
+brew "libomp"
+brew "pkgconf"
+brew "protobuf"
+brew "ninja"
