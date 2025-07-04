@@ -35,6 +35,7 @@ if status is-interactive
     alias ga="git add"
     alias gcm="git commit -m"
     alias gc="git commit"
+    alias gca="git commit --amend"
     alias gco="git checkout"
     alias gbr="git branch"
     alias gm="git merge --rebase"
