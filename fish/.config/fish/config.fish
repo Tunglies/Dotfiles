@@ -43,6 +43,7 @@ if status is-interactive
     alias gst="git status"
     alias gds="git diff --staged"
     alias gdc="git diff"
+    alias glg="git log --graph --oneline --decorate --all"
 
     zoxide init fish | source
 
